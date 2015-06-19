@@ -318,6 +318,8 @@ module Make(IO : Make.IO) : sig
 
   (** Sorted Set commands *)
 
+  val zscore : connection -> string -> string -> string option IO.t
+
   (* Add one or more members to a sorted set, or update its score if it already exists. *)
   val zadd : connection -> string -> (int * string) list -> int IO.t
 

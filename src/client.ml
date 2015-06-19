@@ -886,6 +886,10 @@ module Make(IO : Make.IO) = struct
 
   (** Sorted Set commands *)
 
+  let zscore connection key member =
+    let command = [ "ZSCORE"; key; member ] in
+    send_request connection command >>= return_bulk
+
   (* Add one or more members to a sorted set, or update its score if it already exists. *)
   let zadd connection key values =
     let f acc (s, v) = (string_of_int s) :: v :: acc in
